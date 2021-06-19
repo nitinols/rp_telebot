@@ -3,7 +3,7 @@ import time
 from threading import Thread
 import keyboa
 from keyboa import Keyboa
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 
 # telebot setup
