@@ -23,6 +23,7 @@ def GPIO_Rasberry(gp06, gp12, gp13, id_user_chat):  # setup and change gpi volue
     GPIO.setmode(GPIO.BCM)
     BOT_READI = 0
     GPIO.setup(gpio_list, GPIO.OUT)
+    GPIO.output(gpio_list, GPIO.LOW)
     if gp06:
         GPIO.output(6, GPIO.HIGH)
     elif gp12:
