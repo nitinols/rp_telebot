@@ -7,7 +7,7 @@ from keyboa import Keyboa
 
 
 # telebot setup
-bot = telebot.TeleBot('1251334241:AAEG_TGZUx_h2NXVN7OBFx5gTjnGVREgtzY')
+bot = telebot.TeleBot('1849228524:AAGEeKNglQZXpS_mxIRG-EWiPwb_JeNvACA')
 
 BOT_READI = 1
 
@@ -20,21 +20,20 @@ kb_backlight = Keyboa(items=backlight_options, copy_text_to_callback=True).keybo
 
 def GPIO_Rasberry(gp06, gp12, gp13, id_user_chat):  # setup and change gpi voluem
     global BOT_READI
+    GPIO.setmode(GPIO.BCM)
     BOT_READI = 0
-    # GPIO.setup(gpio_list, GPIO.OUT)
+    GPIO.setup(gpio_list, GPIO.OUT)
     if gp06:
-        pass
-        # GPIO.output(gpio_list, GPIO.HIGH)
+        GPIO.output(6, GPIO.HIGH)
     elif gp12:
-        pass
-        # GPIO.output(gpio_list, GPIO.HIGH)
+        GPIO.output(12, GPIO.HIGH)
     elif gp13:
-        pass
-        # GPIO.output(gpio_list, GPIO.HIGH)
-    #bot.send_message(id_user_chat, 'Подсветка моста изменена')
+        GPIO.output(13, GPIO.HIGH)
+    bot.send_message(id_user_chat, 'Подсветка моста изменена')
     time.sleep(300)
-    # bot.send_message(id_user_chat, 'Можете выбрать подсветку моста снова')
+    bot.send_message(id_user_chat, 'Можете выбрать подсветку моста снова')
     BOT_READI = 1
+    GPIO.output(12, GPIO.LOW)
 
 
 
@@ -50,16 +49,16 @@ def start_message(message):
 def callback_inline(call):
     if BOT_READI:
         if call.data == 'Вариант 1':
-                    bot.send_message(call.message.chat.id, 'подсветка изменена на Вариант 1')
+                    bot.send_message(call.message.chat.id, 'подсветка изменяется на Вариант 1')
                     th = Thread(target=GPIO_Rasberry, args=(1, 0, 0, call.message.chat.id))
                     th.start()
         elif call.data == 'Вариант 2':
-                    bot.send_message(call.message.chat.id, 'подсветка изменена на Вариант 2')
+                    bot.send_message(call.message.chat.id, 'подсветка изменяется на Вариант 2')
                     th = Thread(target=GPIO_Rasberry, args=(0, 1, 0, call.message.chat.id))
                     th.start()
 
         elif call.data == 'Вариант 3':
-                    bot.send_message(call.message.chat.id, 'подсветка изменена на Вариант 3')
+                    bot.send_message(call.message.chat.id, 'подсветка изменяется на Вариант 3')
                     th = Thread(target=GPIO_Rasberry, args=(0, 0, 1, call.message.chat.id))
                     th.start()
     else:
