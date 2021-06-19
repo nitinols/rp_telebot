@@ -33,7 +33,7 @@ def GPIO_Rasberry(gp06, gp12, gp13, id_user_chat):  # setup and change gpi volue
     time.sleep(300)
     bot.send_message(id_user_chat, 'Можете выбрать подсветку моста снова')
     BOT_READI = 1
-    GPIO.output(12, GPIO.LOW)
+    GPIO.output(gpio_list, GPIO.LOW)
 
 
 
