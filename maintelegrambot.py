@@ -7,7 +7,7 @@ import RPi.GPIO as GPIO
 
 
 # telebot setup
-bot = telebot.TeleBot('1849228524:AAGEeKNglQZXpS_mxIRG-EWiPwb_JeNvACA')
+bot = telebot.TeleBot('1827375393:AAEyVqBwJ59JiWUTscbw775UbY4Zy1d-XRY')
 
 BOT_READI = 1
 
